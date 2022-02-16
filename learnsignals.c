@@ -10,19 +10,17 @@
 /*                                                                                                  */
 /* ************************************************************************************************ */
 
-#include <stdio.h>
-#include <signal.h>
-#include <stdlib.h>
-#include <unistd.h>
+
+#include "minitalk.h"
 
 void handle_sig(int sig/*, siginfo_t *info , void *other*/)
 {
 	printf("sig: %d\n", sig);
-
 }
 
 int main()
 {
+	ft_header_server();
 	struct sigaction sgn;
 	printf("The PID is: %d\n", getpid());	
 	// sgn.sa_sigaction = handle_sig;
