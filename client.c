@@ -6,7 +6,7 @@
 /*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 14:29:53 by ahjadani          #+#    #+#             */
-/*   Updated: 2022/02/16 11:50:39 by ahjadani         ###   ########.fr       */
+/*   Updated: 2022/02/16 19:47:31 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,13 @@ void ft_send_bit(char c, int pid)
     while(i >= 0)
     {
         if (c >> i & 1)
-            kill(pid, SIGUSR1);
-        else
             kill(pid, SIGUSR2);
+        else
+            kill(pid, SIGUSR1);
+        usleep(600);
         i--;
     }
-    usleep(600);
+    
 }
 
 void ft_send_str(char *str, int pid)
@@ -42,7 +43,7 @@ int main(int argc, char *argv[])
 {
     char *str;
     int pid;
-   // char str[];
+
     if (argc == 3)
     {
         pid = atoi(argv[1]);
@@ -58,8 +59,6 @@ int main(int argc, char *argv[])
             exit(1);
         }
         ft_send_str(str, pid);
-        //printf("%d\n", pid);
-        //printf("%s", str);
     }
     else
     {
